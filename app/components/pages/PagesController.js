@@ -1,4 +1,4 @@
-angular.module('eposApp').controller('PagesController', ['check', function (check) {
+angular.module('eposApp').controller('PagesController', ['pageData', '$stateParams', function (pageData, $stateParams) {
     var self = this;
-    this.page = check.data;
+    this.page = pageData.data;
 }]);

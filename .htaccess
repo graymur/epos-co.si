@@ -15,6 +15,7 @@ RewriteRule     .               /index.php              [L]
 
 <ifModule mod_expires.c>
     ExpiresActive On
+    ExpiresByType text/css "access plus 3 month"
     ExpiresByType image/gif "access plus 3 month"
     ExpiresByType image/jpeg "access plus 3 month"
 </ifModule>

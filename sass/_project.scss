@@ -19,7 +19,7 @@
 }
 
 @mixin svgBG($file) {
-    background-image: inline-image("svg/dist/" + $file + ".svg");
+    background-image: inline-image("svg/" + $file + ".svg");
     background-repeat: no-repeat;
     background-size: 100%;
 

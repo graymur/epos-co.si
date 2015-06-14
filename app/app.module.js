@@ -1,4 +1,4 @@
 /**
  * Epos App
  */
-angular.module('eposApp', ['ngRoute']);
+angular.module('eposApp', ['ui.router']);

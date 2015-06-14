@@ -6,84 +6,156 @@
  */
 
 $pages = [
-    'about' => [
-        'title' => 'About us',
-        'url' => '/about',
-        'menu_id' => 1,
-        'content' => file_get_contents('../html/about.html')
+    'en' => [
+        'about' => [
+            'title' => 'About us',
+            'url' => 'about',
+            'menu_id' => 1,
+            'content' => file_get_contents('../html/en/about.html')
+        ],
+        'services' => [
+            'title' => 'Services',
+            'url' => 'services',
+            'menu_id' => 1,
+            'content' =>
+                '<h3>Research</h3>' .
+                file_get_contents('../html/en/services-research.html') .
+                '<h3>Business consulting</h3>' .
+                file_get_contents('../html/en/services-consulting.html') .
+                '<h3>Business trainings/workshops</h3>' .
+                file_get_contents('../html/en/services-trainings.html')
+        ],
+        'partnerships' => [
+            'title' => 'Partnerships',
+            'url' => 'partnerships',
+            'menu_id' => 1,
+            'content' => file_get_contents('../html/en/partnerships.html')
+        ],
+        'contacts' => [
+            'title' => 'Contacts',
+            'url' => 'contacts',
+            'menu_id' => 1,
+            'content' => file_get_contents('../html/en/contacts.html')
+        ],
+        'services/research' => [
+            'title' => 'Research',
+            'url' => 'services/research',
+            'content' => file_get_contents('../html/en/services-research.html')
+        ],
+        'services/consulting' => [
+            'title' => 'Business consulting',
+            'url' => 'services/consulting',
+            'content' => file_get_contents('../html/en/services-consulting.html')
+        ],
+        'services/trainings' => [
+            'title' => 'Business trainings/workshops',
+            'url' => 'about',
+            'content' => file_get_contents('../html/en/services-trainings.html')
+        ],
+        'speakers' => [
+            'title' => 'Guest Speakers',
+            'url' => 'speakers',
+            'menu_id' => 1,
+            'content' => file_get_contents('../html/en/speakers.html')
+        ],
     ],
-    'services' => [
-        'title' => 'Services',
-        'url' => '/services',
-        'menu_id' => 1,
-        'content' =>
-            '<h3>Research</h3>' .
-            file_get_contents('../html/services-research.html') .
-            '<h3>Business consulting</h3>' .
-            file_get_contents('../html/services-consulting.html') .
-            '<h3>Business trainings/workshops</h3>' .
-            file_get_contents('../html/services-trainings.html')
-    ],
-    'partnerships' => [
-        'title' => 'Partnerships',
-        'url' => '/partnerships',
-        'menu_id' => 1,
-        'content' => file_get_contents('../html/partnerships.html')
-    ],
-    'contacts' => [
-        'title' => 'Contacts',
-        'url' => '/contacts',
-        'menu_id' => 1,
-        'content' => file_get_contents('../html/contacts.html')
-    ],
-    'services/research' => [
-        'title' => 'Research',
-        'url' => '/services/research',
-        'content' => file_get_contents('../html/services-research.html')
-    ],
-    'services/consulting' => [
-        'title' => 'Business consulting',
-        'url' => '/services/consulting',
-        'content' => file_get_contents('../html/services-consulting.html')
-    ],
-    'services/trainings' => [
-        'title' => 'Business trainings/workshops',
-        'url' => '/about',
-        'content' => file_get_contents('../html/services-trainings.html')
-    ],
-    'speakers' => [
-        'title' => 'Guest Speakers',
-        'url' => '/speakers',
-        'menu_id' => 1,
-        'content' => file_get_contents('../html/speakers.html')
-    ],
+    'si' => [
+        'about' => [
+            'title' => 'About us',
+            'url' => 'si/about',
+            'menu_id' => 1,
+            'content' => file_get_contents('../html/si/about.html')
+        ],
+        'services' => [
+            'title' => 'Services',
+            'url' => 'si/services',
+            'menu_id' => 1,
+            'content' =>
+                '<h3>Research</h3>' .
+                file_get_contents('../html/si/services-research.html') .
+                '<h3>Business consulting</h3>' .
+                file_get_contents('../html/si/services-consulting.html') .
+                '<h3>Business trainings/workshops</h3>' .
+                file_get_contents('../html/si/services-trainings.html')
+        ],
+        'partnerships' => [
+            'title' => 'Partnerships',
+            'url' => 'si/partnerships',
+            'menu_id' => 1,
+            'content' => file_get_contents('../html/si/partnerships.html')
+        ],
+        'contacts' => [
+            'title' => 'Contacts',
+            'url' => 'si/contacts',
+            'menu_id' => 1,
+            'content' => file_get_contents('../html/si/contacts.html')
+        ],
+        'services/research' => [
+            'title' => 'Research',
+            'url' => 'si/services/research',
+            'content' => file_get_contents('../html/si/services-research.html')
+        ],
+        'services/consulting' => [
+            'title' => 'Business consulting',
+            'url' => 'si/services/consulting',
+            'content' => file_get_contents('../html/si/services-consulting.html')
+        ],
+        'services/trainings' => [
+            'title' => 'Business trainings/workshops',
+            'url' => 'si/about',
+            'content' => file_get_contents('../html/si/services-trainings.html')
+        ],
+        'speakers' => [
+            'title' => 'Guest Speakers',
+            'url' => 'si/speakers',
+            'menu_id' => 1,
+            'content' => file_get_contents('../html/si/speakers.html')
+        ],
+    ]
 ];
 
 $retval = [];
 
-if (!empty($_REQUEST['url']))
-{
-    $url = @trim($_REQUEST['url'], '/');
+$language = empty($_REQUEST['lang']) ? 'en' : $_REQUEST['lang'];
 
-    if (!array_key_exists($url, $pages))
+try
+{
+    if (!array_key_exists($language, $pages))
     {
-        throw new Exception;
+        throw new Exception('Wrong language');
     }
 
-    $retval = $pages[$url];
-}
-else
-{
-    foreach ($pages as $url => $p)
+    if (!empty($_REQUEST['url']))
     {
-        if (empty($p['menu_id']) || $p['menu_id'] != 1) continue;
+        $url = @trim($_REQUEST['url'], '/');
 
-        $retval[] = [
-            'url' => $p['url'],
-            'title' => $p['title']
-        ];
+        if (!array_key_exists($url, $pages[$language]))
+        {
+            throw new Exception('Page not found');
+        }
+
+        $retval = $pages[$language][$url];
     }
-}
+    else
+    {
+        foreach ($pages[$language] as $url => $p)
+        {
+            if (empty($p['menu_id']) || $p['menu_id'] != 1)
+            {
+                continue;
+            }
 
-header('Content-Type: application/json');
-echo json_encode($retval);
+            $retval[] = [
+                'url' => $p['url'],
+                'title' => $p['title']
+            ];
+        }
+    }
+
+    header('Content-Type: application/json');
+    echo json_encode($retval);
+}
+catch (Exception $e)
+{
+    header("HTTP/1.0 500 Internal server error");
+}

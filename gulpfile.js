@@ -41,15 +41,15 @@ gulp.task('js', function() {
     return gulp.src(
         [
             'vendor/angular/angular.js',
-            'vendor/angular-route/angular-route.js',
-            //'vendor/angular-ui-router/angular-ui-router.js',
-            'vendor/jquery/dist/jquery.js',
-            'vendor/bootstrap/dist/js/bootstrap.js',
+            //'vendor/angular-route/angular-route.js',
+            'vendor/angular-ui-router/release/angular-ui-router.js',
+            //'vendor/jquery/dist/jquery.js',
+            //'vendor/bootstrap/dist/js/bootstrap.js',
             'app/app.module.js',
             'app/app.routes.js',
             'app/shared/*.js',
-            'app/components/main/*.js',
             'app/components/menu/*.js',
+            'app/components/main/*.js',
             'app/components/speakers/*.js',
             'app/components/pages/*.js'
         ]
@@ -93,7 +93,7 @@ gulp.task('watch', function() {
     // concat JS
     gulp.watch('gulpfile.js', function() {
         gulp.run('css');
-        gulp.run('jsConcat');
+        gulp.run('js');
     });
 });
 

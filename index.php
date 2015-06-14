@@ -1,3 +1,10 @@
+<?php
+if ($_SERVER['REQUEST_URI'] == '/')
+{
+    header('Location: /en');
+    die;
+}
+?>
 <!DOCTYPE html>
 <html>
 <head lang="en">
@@ -15,34 +22,38 @@
     <h1 class="site-title">Epos d.o.o.</h1>
 
     <nav class="main-menu" ng-controller="MenuController" >
-        <a href="{{item.url}}" class="main-menu-item" ng-repeat="item in items">{{item.title}}</a>
+        <a href="/{{item.url}}" ui-sref="app.page({slug:item.url})" class="main-menu-item" ng-repeat="item in items">{{item.title}}</a>
     </nav>
 
-    <div class="content" ng-view></div>
+    <div class="content" ui-view></div>
 
 </div>
-<?/*
-<script src="vendor/angular/angular.min.js"></script>
-<script src="vendor/angular-route/angular-route.min.js"></script>
-<script src="vendor/jquery/dist/jquery.min.js"></script>
-<script src="vendor/bootstrap/dist/js/bootstrap.min.js"></script>
 
-<script src="app/app.module.js"></script>
-<script src="app/app.routes.js"></script>
+<script>
+    var dv = console.log;
+</script>
+
+<script src="vendor/angular/angular.min.js"></script>
+<script src="vendor/angular-ui-router/release/angular-ui-router.js"></script>
+<!--<script src="vendor/jquery/dist/jquery.min.js"></script>-->
+<!--<script src="vendor/bootstrap/dist/js/bootstrap.min.js"></script>-->
+
+<script src="app/app.module.js?<?=uniqid()?>"></script>
+<script src="app/app.routes.js?<?=uniqid()?>"></script>
 <script src="app/shared/filter-unsafe.js"></script>
+<script src="app/shared/lang-interceptor.js"></script>
 
 <script src="app/components/menu/MenuController.js"></script>
 <script src="app/components/main/MainController.js"></script>
 
-<script src="app/components/pages/routing.js"></script>
+<script src="app/components/speakers/routing.js?<?=uniqid()?>"></script>
+<script src="app/components/speakers/SpeakersController.js"></script>
+<script src="app/components/speakers/SpeakersService.js"></script>
+
+<script src="app/components/pages/routing.js?<?=uniqid()?>"></script>
 <script src="app/components/pages/PagesController.js"></script>
 <script src="app/components/pages/PagesService.js"></script>
 
-<script>
-    function dv(v) {
-        console.log(v);
-    }
-</script>*/?>
-<script src="/js/compiled.js"></script>
+<!--<script src="/js/compiled.js?--><?//=filemtime(__DIR__ . '/js/compiled.js')?><!--"></script>-->
 </body>
 </html>
