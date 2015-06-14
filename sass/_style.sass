@@ -1,0 +1,84 @@
+HTML
+    font-size: 62.5%
+
+BODY
+    font-family: 'Roboto Condensed', sans-serif
+    font-size: 1.6rem
+
+A
+    color: black
+
+.site-title
+    position: absolute
+    top: 0
+    left: 0
+    text-align: center
+    width: 100%
+    min-width: 320px
+
+.main-menu
+    position: absolute
+    top: 85px
+    left: 0
+    text-align: center
+    width: 100%
+    min-width: 320px
+
+    &-item
+        display: inline-block
+        margin: 0 10px
+        outline: 0
+
+        &:focus
+            outline: 0
+
+.email-us
+    color: #cccccc
+    text-decoration: none
+    border-bottom: 1px dotted
+
+.email-us:hover
+    border: 0
+
+.container
+    position: relative
+    height: 100%
+    min-width: 340px
+
+.main-screen
+    position: relative
+    height: inherit
+    text-align: center
+
+.main-text
+    display: inline-block
+    vertical-align: middle
+
+.va
+    display: inline-block
+    height: 100%
+    vertical-align: middle
+    font-size: 0
+    line-height: 0
+    +max-screen(400)
+        display: none
+
+.page
+    padding: 30px 50px 40px 50px
+    +max-screen(320)
+        padding: 30px 20px 15px 20px
+
+
+    H2
+        text-align: center
+        margin-bottom: 30px
+
+    A
+        color: white
+        text-decoration: underline
+
+        &:hover
+            text-decoration: none
+
+        &:visited
+            color: #cccccc

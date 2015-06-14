@@ -1,0 +1,21 @@
+<div class="popup">
+    <a href="/" class="popup-close"></a>
+    <div class="page speakers">
+        <h2>Speakers</h2>
+        <div class="page-content" ng-bind-html="ctrl.page.content | unsafe"></div>
+        <ul class="speakers-list">
+            <li class="speakers-list-item" ng-repeat="speaker in ctrl.speakers">
+                <div class="speakers-list-item-image" ng-if="speaker.image">
+                    <img ng-src="{{speaker.image}}" alt="{{speaker.name}}"/>
+                </div>
+                <div class="speakers-list-item-content">
+                    <h3 class="speakers-list-item-title">{{speaker.name}}</h3>
+                    <h5 class="speakers-list-item-position">{{speaker.position}}</h5>
+                    <article class="speakers-list-item-text">
+                        <div class="page-content" ng-bind-html="speaker.content | unsafe"></div>
+                    </article>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>

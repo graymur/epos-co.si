@@ -1,0 +1,20 @@
+RewriteEngine   On
+RewriteBase     /
+
+RewriteRule     ^api/([a-z]+)$  /api/$1.php [L,QSA]
+
+RewriteCond     %{REQUEST_FILENAME} !-f
+RewriteCond     %{REQUEST_FILENAME} !-d
+RewriteRule     .               /index.php              [L]
+
+<IfModule mod_deflate.c>
+    <filesmatch "\.(js|css|html|jpg|png|php)$">
+        SetOutputFilter DEFLATE
+    </filesmatch>
+</IfModule>
+
+<ifModule mod_expires.c>
+    ExpiresActive On
+    ExpiresByType image/gif "access plus 3 month"
+    ExpiresByType image/jpeg "access plus 3 month"
+</ifModule>
