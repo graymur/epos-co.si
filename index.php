@@ -17,33 +17,32 @@ if ($_SERVER['REQUEST_URI'] == '/')
 </head>
 <body ng-app="eposApp">
 
-<div class="container-fluid">
-
-    <h1 class="site-title">Epos d.o.o.</h1>
-
-    <nav class="main-menu" ng-controller="MenuController" >
-        <a href="/{{item.url}}" ui-sref="app.page({slug:item.url})" class="main-menu-item" ng-repeat="item in items">{{item.title}}</a>
+<script type="text/ng-template" id="menu111">
+    <nav class="main-menu">
+        <a href="/{{lang}}/{{item.url}}" ui-sref="app.page({slug:item.url, lang: lang})" class="main-menu-item" ng-repeat="item in items">{{item.title}}</a>
     </nav>
+</script>
 
+<div class="container-fluid">
+    <h1 class="site-title">Epos d.o.o.</h1>
+    <menu></menu>
     <div class="content" ui-view></div>
-
 </div>
 
 <script>
     var dv = console.log;
 </script>
-
+<?/*
 <script src="vendor/angular/angular.min.js"></script>
 <script src="vendor/angular-ui-router/release/angular-ui-router.js"></script>
-<!--<script src="vendor/jquery/dist/jquery.min.js"></script>-->
-<!--<script src="vendor/bootstrap/dist/js/bootstrap.min.js"></script>-->
 
 <script src="app/app.module.js?<?=uniqid()?>"></script>
-<script src="app/app.routes.js?<?=uniqid()?>"></script>
 <script src="app/shared/filter-unsafe.js"></script>
 <script src="app/shared/lang-interceptor.js"></script>
+<script src="app/shared/util.js"></script>
 
 <script src="app/components/menu/MenuController.js"></script>
+<script src="app/components/menu/MenuDirective.js"></script>
 <script src="app/components/main/MainController.js"></script>
 
 <script src="app/components/speakers/routing.js?<?=uniqid()?>"></script>
@@ -54,6 +53,8 @@ if ($_SERVER['REQUEST_URI'] == '/')
 <script src="app/components/pages/PagesController.js"></script>
 <script src="app/components/pages/PagesService.js"></script>
 
-<!--<script src="/js/compiled.js?--><?//=filemtime(__DIR__ . '/js/compiled.js')?><!--"></script>-->
+<script src="app/app.routes.js?<?=uniqid()?>"></script>
+*/?>
+<script src="/js/compiled.js?<?=filemtime(__DIR__ . '/js/compiled.js')?>"></script>
 </body>
 </html>

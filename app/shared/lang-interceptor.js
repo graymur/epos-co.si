@@ -1,11 +1,7 @@
-angular.module('eposApp').factory('langRequestInterceptor',['$stateParams', '$location', function($stateParams, $location){
+angular.module('eposApp').factory('langRequestInterceptor', ['$location', 'Util', function($location, Util) {
     return {
         request: function (config) {
-            var lang = $stateParams.lang;
-
-            if (!lang) {
-                lang = $location.path().split('/')[1];
-            }
+            var lang = Util.getLanguage();
 
             if (lang.length == 2) {
                 config.url += (config.url.split('?')[1] ? '&':'?') + 'lang=' + lang;

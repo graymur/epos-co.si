@@ -62,13 +62,13 @@ $pages = [
     'si' => [
         'about' => [
             'title' => 'About us',
-            'url' => 'si/about',
+            'url' => 'about',
             'menu_id' => 1,
             'content' => file_get_contents('../html/si/about.html')
         ],
         'services' => [
             'title' => 'Services',
-            'url' => 'si/services',
+            'url' => 'services',
             'menu_id' => 1,
             'content' =>
                 '<h3>Research</h3>' .
@@ -80,34 +80,34 @@ $pages = [
         ],
         'partnerships' => [
             'title' => 'Partnerships',
-            'url' => 'si/partnerships',
+            'url' => 'partnerships',
             'menu_id' => 1,
             'content' => file_get_contents('../html/si/partnerships.html')
         ],
         'contacts' => [
             'title' => 'Contacts',
-            'url' => 'si/contacts',
+            'url' => 'contacts',
             'menu_id' => 1,
             'content' => file_get_contents('../html/si/contacts.html')
         ],
         'services/research' => [
             'title' => 'Research',
-            'url' => 'si/services/research',
+            'url' => 'services/research',
             'content' => file_get_contents('../html/si/services-research.html')
         ],
         'services/consulting' => [
             'title' => 'Business consulting',
-            'url' => 'si/services/consulting',
+            'url' => 'services/consulting',
             'content' => file_get_contents('../html/si/services-consulting.html')
         ],
         'services/trainings' => [
             'title' => 'Business trainings/workshops',
-            'url' => 'si/about',
+            'url' => 'about',
             'content' => file_get_contents('../html/si/services-trainings.html')
         ],
         'speakers' => [
             'title' => 'Guest Speakers',
-            'url' => 'si/speakers',
+            'url' => 'speakers',
             'menu_id' => 1,
             'content' => file_get_contents('../html/si/speakers.html')
         ],
@@ -122,16 +122,20 @@ try
 {
     if (!array_key_exists($language, $pages))
     {
-        throw new Exception('Wrong language');
+//        throw new Exception('Wrong language');
+        throw new Exception404('Wrong language');
     }
 
     if (!empty($_REQUEST['url']))
     {
-        $url = @trim($_REQUEST['url'], '/');
+        $url = preg_replace("#^{$language}/#", '', $_REQUEST['url']);
+        $url = @trim($url, '/');
+
+//        echo ($url);
 
         if (!array_key_exists($url, $pages[$language]))
         {
-            throw new Exception('Page not found');
+            throw new Exception404('Page not found');
         }
 
         $retval = $pages[$language][$url];
@@ -155,7 +159,13 @@ try
     header('Content-Type: application/json');
     echo json_encode($retval);
 }
+catch (Exception404 $e)
+{
+    header("HTTP/1.0 404 Not found");
+}
 catch (Exception $e)
 {
     header("HTTP/1.0 500 Internal server error");
 }
+
+class Exception404 extends Exception {};

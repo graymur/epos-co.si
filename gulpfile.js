@@ -46,12 +46,12 @@ gulp.task('js', function() {
             //'vendor/jquery/dist/jquery.js',
             //'vendor/bootstrap/dist/js/bootstrap.js',
             'app/app.module.js',
-            'app/app.routes.js',
             'app/shared/*.js',
             'app/components/menu/*.js',
             'app/components/main/*.js',
             'app/components/speakers/*.js',
-            'app/components/pages/*.js'
+            'app/components/pages/*.js',
+            'app/app.routes.js'
         ]
     )
         .pipe(concat('compiled.js'))
