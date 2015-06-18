@@ -9,8 +9,8 @@
 //    $locationProvider.html5Mode(true);
 //}]);
 
-angular.module('eposApp').config(['$stateProvider', '$locationProvider', '$urlMatcherFactoryProvider', '$urlRouterProvider',
-    function($stateProvider, $locationProvider, $urlMatcherFactoryProvider, $urlRouterProvider) {
+angular.module('eposApp').config(['$stateProvider', '$locationProvider', '$urlMatcherFactoryProvider',
+    function($stateProvider, $locationProvider, $urlMatcherFactoryProvider) {
         $urlMatcherFactoryProvider.strictMode(false);
 
         $stateProvider
@@ -22,7 +22,8 @@ angular.module('eposApp').config(['$stateProvider', '$locationProvider', '$urlMa
             .state('app.home', {
                 url: '',
                 templateUrl: 'app/components/main/main.html',
-                controller: 'MainController as ctrl',
+                //templateUrl: '/main.html',
+                controller: 'MainController as ctrl'
             })
             .state('404', {
                 templateUrl: 'app/components/error/404.html'
