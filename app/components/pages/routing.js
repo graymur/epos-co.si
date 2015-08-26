@@ -1,19 +1,3 @@
-/*angular.module('eposApp').config(['$routeProvider', function($routeProvider) {
-    self = this;
-
-    $routeProvider
-        .when('/:page*', {
-            templateUrl: 'app/components/pages/page.html',
-            resolve: {
-                check: ['$location', 'PagesService', function($location, PagesService) {
-                    return PagesService.getByUrl($location.path())
-                }]
-            },
-            controller: 'PagesController as ctrl'
-        })
-    ;
-}]);*/
-
 angular.module('eposApp').config(['$stateProvider', '$urlMatcherFactoryProvider', function($stateProvider, $urlMatcherFactoryProvider) {
     function valToString(val) {
         return val !== null ? val.toString() : val;
