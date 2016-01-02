@@ -1,0 +1,30 @@
+.gallery
+
+    &-section
+        overflow: hidden
+
+        &-title
+            padding-bottom: 10px
+
+        &-previews
+            float: left
+            width: 310px
+            font-size: 0
+            overflow: hidden
+            margin: 3px 20px 20px 0
+            +max-screen(768)
+                width: auto
+                float: none
+                margin: 0 0 20px 0
+                text-align: center
+
+            IMG
+                display: inline-block
+                margin: 0 5px 5px 0
+                +max-screen(768)
+                    margin: 0 0 5px 0
+                    width: 100%
+                    height: auto
+
+        &-text
+            

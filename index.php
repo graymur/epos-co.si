@@ -1,5 +1,5 @@
 <?php
-if ($_SERVER['REQUEST_URI'] == '/')
+if ($_SERVER['REQUEST_URI'] === '/')
 {
     header('Location: /en');
     die;
@@ -12,14 +12,14 @@ if ($_SERVER['REQUEST_URI'] == '/')
     <meta charset="UTF-8">
     <title>Epos Slovenia</title>
     <link href='http://fonts.googleapis.com/css?family=Roboto+Condensed&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" type="text/css" media="screen" href="/css/main.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="/css/main.css?<?=substr(filemtime(__DIR__ . '/css/main.css'), -4)?>">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <base href="/">
 </head>
 <body ng-app="eposApp">
 
 <div class="container-fluid">
-    <h1 class="site-title">Epos d.o.o.</h1>
+    <h1 class="site-title">Epos</h1>
     <menu></menu>
     <div class="content" ui-view></div>
 </div>
